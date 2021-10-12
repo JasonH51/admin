@@ -12,13 +12,13 @@ export default function FeaturedInfo() {
       try {
         const res = await userRequest.get('/orders/income');
         setIncome(res.data);
-        setPercent((res.data[1].total * 100) / res.data[0].total);
-        console.log(res.data);
-      } catch (error) {}
+        setPercent((res.data[0].total * 100) / res.data[1].total);
+      } catch (error) {
+        console.log('getIcome not working');
+      }
     };
     getIncome();
   }, []);
-
   return (
     <div className="featured">
       <div className="featuredItem">
