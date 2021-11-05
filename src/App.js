@@ -10,18 +10,21 @@ import ProductList from './pages/productList/ProductList';
 import Product from './pages/product/Product';
 import NewProduct from './pages/newProduct/NewProduct';
 import Login from './pages/login/Login';
+import {useSelector} from 'react-redux';
 
 function App() {
-  const admin = JSON.parse(JSON.parse(localStorage.getItem('persist:root')).user).currentUser
-    .isAdmin;
+  const admin = useSelector(state => state.user.currentUser?.isAdmin);
+  console.log(!admin);
+
+  //admin = true or no one will be able to visit this website but me.
+  // const admin = true;
 
   return (
     <Router>
       <Switch>
-        <Route path="/login">
+        {!admin ? (
           <Login />
-        </Route>
-        {admin && (
+        ) : (
           <>
             <Topbar />
             <div className="container">

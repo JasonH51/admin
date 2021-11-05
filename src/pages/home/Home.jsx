@@ -18,14 +18,15 @@ export default function Home() {
     const getStats = async () => {
       try {
         const res = await userRequest.get('/users/stats');
-        res.data.map(item =>
+        res.data?.map(item =>
           setUserStats(prev => [...prev, {name: MONTHS[item._id - 1], 'Active User': item.total}])
         );
-      } catch {}
+      } catch (err) {
+        console.error(err);
+      }
     };
     getStats();
   }, [MONTHS]);
-
 
   return (
     <div className="home">
