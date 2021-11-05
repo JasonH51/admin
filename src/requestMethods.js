@@ -4,7 +4,7 @@ const BASE_URL = 'http://localhost:5000/api/';
 
 let TOKEN;
 
-export const check = JSON.parse(JSON.parse(localStorage.getItem('persist:root')).user).currentUser;
+export const check = JSON.parse(localStorage.getItem('persist:root'));
 
 if (check !== null) {
   TOKEN = JSON.parse(JSON.parse(localStorage.getItem('persist:root')).user).currentUser
